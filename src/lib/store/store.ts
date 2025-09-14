@@ -1,17 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userSlice from "./userSlice";
-import teacherSlice from "./teacherSlice";
-import studentSlice from "./studentSlice";
+import authSlice from "./auth/auth-slice";
+import teacherSlice from "./teacher/teacher-slice";
+import instituteSlice from "./institute/institute-slice";
 
 // collect all slices and store
 const store = configureStore({
   reducer: {
-    user: userSlice,
+    auth: authSlice,
     teacher: teacherSlice,
-    student: studentSlice,
+    institute: instituteSlice,
   },
 });
-
 export default store;
 
 //dispatch ko type
