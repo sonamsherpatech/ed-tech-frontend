@@ -9,3 +9,8 @@ export interface IInitialState {
   user: IUserData;
   status: Status;
 }
+
+export interface ILoginData {
+  email: string;
+  password: string;
+}

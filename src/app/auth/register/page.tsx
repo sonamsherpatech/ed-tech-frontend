@@ -1,8 +1,12 @@
 "use client";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IRegisterData } from "./register-types";
+import { useAppDispatch } from "@/lib/store/hooks";
+import { registerUser } from "@/lib/store/auth/auth-slice";
+import { Status } from "@/lib/types/type";
 
 function Register() {
+  const dispatch = useAppDispatch();
   const [data, setData] = useState<IRegisterData>({
     username: "",
     password: "",
@@ -20,6 +24,10 @@ function Register() {
 
   const handleRegisterSubmission = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    //apiCall
+    dispatch(registerUser(data));
+    if (status === Status.SUCCESS) {
+    }
   };
 
   return (
