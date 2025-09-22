@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IInitialState, IUserData } from "./auth-slice-types";
 import { Status } from "@/lib/types/type";
-import API from "@/lib/http";
+import { API } from "@/lib/http";
 import { AppDispatch } from "../store";
 import { ILoginTypes } from "@/app/auth/login/login-types";
 import { IRegisterData } from "@/app/auth/register/register-types";
@@ -9,7 +9,7 @@ import { IRegisterData } from "@/app/auth/register/register-types";
 const initialState: IInitialState = {
   user: {
     username: "",
-    password: "",
+    token: "",
   },
   status: Status.LOADING,
 };
@@ -33,7 +33,7 @@ export default authSlice.reducer;
 export function registerUser(data: IRegisterData) {
   return async function registerUserThunk(dispatch: AppDispatch) {
     try {
-      const response = await API.post("/register", data);
+      const response = await API.post("/auth/register", data);
       if (response.status === 201) {
         dispatch(setStatus(Status.SUCCESS));
       } else {
@@ -46,11 +46,13 @@ export function registerUser(data: IRegisterData) {
   };
 }
 
-function loginUser(data: ILoginTypes) {
+export function loginUser(data: ILoginTypes) {
   return async function loginUserThunk(dispatch: AppDispatch) {
     try {
-      const response = await API.post("/login", data);
+      const response = await API.post("/auth/login", data);
       if (response.status === 200) {
+        dispatch(setUser(response.data.data));
+        localStorage.setItem("token", response.data.data.token);
         dispatch(setStatus(Status.SUCCESS));
       } else {
         dispatch(setStatus(Status.ERROR));

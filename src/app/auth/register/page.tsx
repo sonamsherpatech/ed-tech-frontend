@@ -9,7 +9,7 @@ function Register() {
   const dispatch = useAppDispatch();
   const [data, setData] = useState<IRegisterData>({
     username: "",
-    password: "",
+    password:  "",
     email: "",
   });
 
@@ -21,7 +21,8 @@ function Register() {
       [name]: value,
     });
   };
-
+  console.log(data, "Register Data");
+  
   const handleRegisterSubmission = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //apiCall

@@ -5,9 +5,11 @@ export interface IInstituteData {
   instituteEmail: string;
   institutePhoneNumber: string;
   instituteAddress: string;
+  institutePanNo?: string;
+  instituteVatNo?: string;
 }
 
 export interface IInstituteInitialData {
   institute: IInstituteData;
-  status : Status
+  status: Status;
 }
