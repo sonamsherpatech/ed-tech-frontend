@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./auth/auth-slice";
 import teacherSlice from "./teacher/teacher-slice";
 import instituteSlice from "./institute/institute-slice";
+import instituteCategorySlice from "./institute/category/institute-category-slice";
 
 // collect all slices and store
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     auth: authSlice,
     teacher: teacherSlice,
     institute: instituteSlice,
+    category: instituteCategorySlice,
   },
 });
 export default store;
